@@ -9,7 +9,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-${VERSION}-oracle
 ENV JRE_HOME ${JAVA_HOME}/jre
 ENV MAVEN_VERSION 3.5.0
 
-RUN apt-get update && apt-get install ca-certificates curl unzip git \
+RUN apt-get update && apt-get install ca-certificates curl unzip netcat git \
 	-y --no-install-recommends && \
 	curl --silent --location --retry 3 --cacert /etc/ssl/certs/GeoTrust_Global_CA.pem \
 	--header "Cookie: oraclelicense=accept-securebackup-cookie;" \
