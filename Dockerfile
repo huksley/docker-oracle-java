@@ -26,12 +26,5 @@ RUN update-alternatives --install "/usr/bin/java" "java" "${JRE_HOME}/bin/java" 
 	update-alternatives --set javaws "${JRE_HOME}/bin/javaws" && \
 	update-alternatives --set javac "${JAVA_HOME}/bin/javac"
 
-RUN export JAVA_HOME=/usr/lib/jvm/java-${VERSION}-oracle && \
-  curl -o apache-maven-${MAVEN_VERSION}-bin.zip http://apache-mirror.rbc.ru/pub/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
-  tar -xzvf apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
-  mkdir -p /opt && mv apache-maven-${MAVEN_VERSION} /opt \
-  export MAVEN_HOME=/opt/apache-maven-${MAVEN_VERSION} && \
-  export PATH=${MAVEN_HOME}/bin:${PATH} && \
-  curl -sSL https://get.docker.com/ | sh
- 
+
   
