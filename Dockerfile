@@ -9,8 +9,10 @@ ENV JAVA_HOME /usr/lib/jvm/java-${VERSION}-oracle
 ENV JRE_HOME ${JAVA_HOME}/jre
 ENV MAVEN_VERSION 3.5.0
 
-RUN apt-get update && apt-get install ca-certificates curl unzip netcat wget git \
+RUN apt-get update && apt-get install locales ca-certificates curl unzip netcat wget git \
 	-y --no-install-recommends && \
+	locale-gen en_US.UTF-8 && \
+	localedef -i en_US -c -f UTF-8 en_US.UTF-8 && \
 	curl --silent --location --retry 3 --cacert /etc/ssl/certs/GeoTrust_Global_CA.pem \
 	--header "Cookie: oraclelicense=accept-securebackup-cookie;" \
 	http://download.oracle.com/otn-pub/java/jdk/"${VERSION}"u"${UPDATE}"-b"${BUILD}"/"${SIG}"/jdk-"${VERSION}"u"${UPDATE}"-linux-x64.tar.gz \
@@ -25,6 +27,3 @@ RUN update-alternatives --install "/usr/bin/java" "java" "${JRE_HOME}/bin/java" 
 	update-alternatives --set java "${JRE_HOME}/bin/java" && \
 	update-alternatives --set javaws "${JRE_HOME}/bin/javaws" && \
 	update-alternatives --set javac "${JAVA_HOME}/bin/javac"
-
-
-  
