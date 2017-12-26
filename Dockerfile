@@ -23,9 +23,15 @@ RUN apt-get update && apt-get install locales ca-certificates curl unzip netcat 
 RUN update-alternatives --install "/usr/bin/java" "java" "${JRE_HOME}/bin/java" 1 && \
 	update-alternatives --install "/usr/bin/javaws" "javaws" "${JRE_HOME}/bin/javaws" 1 && \
 	update-alternatives --install "/usr/bin/javac" "javac" "${JAVA_HOME}/bin/javac" 1 && \
+	update-alternatives --install "/usr/bin/jps" "jps" "${JAVA_HOME}/bin/jps" 1 && \
+	update-alternatives --install "/usr/bin/jstack" "jstack" "${JAVA_HOME}/bin/jstack" 1 && \
+	update-alternatives --install "/usr/bin/jmap" "jmap" "${JAVA_HOME}/bin/jmap" 1 && \
 	update-alternatives --set java "${JRE_HOME}/bin/java" && \
 	update-alternatives --set javaws "${JRE_HOME}/bin/javaws" && \
-	update-alternatives --set javac "${JAVA_HOME}/bin/javac"
+	update-alternatives --set javac "${JAVA_HOME}/bin/javac" && \
+	update-alternatives --set jps "${JAVA_HOME}/bin/jps" && \
+	update-alternatives --set jstack "${JAVA_HOME}/bin/jstack" && \
+	update-alternatives --set jmap "${JAVA_HOME}/bin/jmap"
 
 RUN ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime && \
     echo "Europe/Moscow" > /etc/timezone && \
@@ -34,5 +40,3 @@ RUN ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime && \
     echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
     update-locale LANG="en_US.UTF-8" LANGUAGE="en_US" && \
     dpkg-reconfigure --frontend=noninteractive locales
-    
-    
